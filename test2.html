@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src='bower_components/three/three.js'></script>
+</head>
+<body>
+    <script>
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        var geometry = new THREE.CubeGeometry(1,1,1);
+        var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        var cube = new THREE.Mesh(geometry, material);
+        cube.position.x = 3; 
+        cube.position.y = 2;
+        cube.position.z = 0;  
+        scene.add(cube);
+        var geometry1 = new THREE.CubeGeometry(1,1,1);
+            var material1 = new THREE.MeshBasicMaterial({color: 0xff0000});
+            var cube1 = new THREE.Mesh(geometry1, material1); 
+        camera.position.z = 5;
+        scene.add(cube1);
+        // for(var i=0;i<=20;i++){
+        //     var geometry = new THREE.CubeGeometry(0.5,0.5,0.5);
+        //     var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        //     var cube = new THREE.Mesh(geometry, material);
+        //     cube.position.x = -6+i*0.2; 
+        //     cube.position.y = -4+i*0.2;
+        //     cube.position.z = 0+i*0.2; 
+        //     scene.add(cube);
+        // }
+        function render() {
+            requestAnimationFrame(render);
+            cube1.rotation.z += 0.02;
+            cube1.rotation.y += 0.02;
+            cube1.rotation.x += 0.05;
+
+            cube.rotation.z += 0.02;
+            cube.rotation.y += 0.02;
+            cube.rotation.x += 0.05;
+
+            renderer.render(scene, camera);
+        }
+        render();
+    </script>
+</body>
+</html>
